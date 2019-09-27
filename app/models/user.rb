@@ -29,4 +29,6 @@ class User < ApplicationRecord
       errors.add(:username, :invalid)
     end
   end
+
+  has_many :topics
 end
