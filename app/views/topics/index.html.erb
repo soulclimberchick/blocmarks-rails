@@ -1,2 +1,27 @@
-<h1>Topics#index</h1>
-<p>Find me in app/views/topics/index.html.erb</p>
+<h1>Topics</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <% @topics.each do |topic| %>
+      <div class="media">
+        <div class="media-heading">
+          <h4><%= link_to topic.title, topic %></h4>
+        </div>
+        <div class="media-body">
+          <div class="col-md-8 panel panel-info">
+            <% topic.bookmarks.each do |bookmark| %>
+              <ul>
+                <li>  <%= link_to bookmark.url, edit_topic_bookmark_path(topic, bookmark) %></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- put at top? -->
+<div class="col-md-4">
+  <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
+</div>
