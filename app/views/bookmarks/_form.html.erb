@@ -1,0 +1,9 @@
+<%= form_for [@topic, @bookmark] do |f| %>
+<div class="form-group">
+  <%= f.label :url, class:"sr-only" %>
+  <%= f.text_field :url, class: 'form-control', placeholder: "Bookmark URL" %>
+</div>
+<div class="form-group">
+  <%= f.submit "Save", class: 'btn btn-outline-primary' %>
+  <% end %>
+</div>

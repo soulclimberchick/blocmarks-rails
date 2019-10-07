@@ -1,27 +1,30 @@
-<h1>Topics</h1>
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">All Blocmarks</h1>
+  <% if user_signed_in? %>
+    <%= link_to "Add Topic", new_topic_path, :class => 'btn btn-sm btn-outline-secondary' %>
+  <% end %>
+</div>
 
-<div class="row">
-  <div class="col-md-6">
+<div class="album py-5 bg-light">
+  <div class="container">
     <% @topics.each do |topic| %>
-      <div class="media">
-        <div class="media-heading">
-          <h4><%= link_to topic.title, topic %></h4>
-        </div>
-        <div class="media-body">
-          <div class="col-md-8 panel panel-info">
-            <% topic.bookmarks.each do |bookmark| %>
-              <ul>
-                <li>  <%= link_to bookmark.url, edit_topic_bookmark_path(topic, bookmark) %></li>
-              </ul>
-            <% end %>
-          </div>
+      <p><%= link_to topic.title.downcase, topic_path(topic.id), class: "lead" %></p>
+      <div class="container">
+        <div class="row">
+          <% topic.bookmarks[0..3].each do |bookmark| %>
+            <div class="col-md-3">
+              <div class="card mb-3 shadow-sm">
+                <%= link_to image_tag("//image.thum.io/get/#{bookmark.url}", class: "card-img-top", alt: "Thumbnail [100%x225]", style: "height: 225px; width: 100%; display: block;" ), bookmark.url, target: "_blank" %>
+                <div class="card-body">
+                  <p class="text-left">
+                    <small><%= bookmark.url.remove("http://", "https://", "www.") %></small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
   </div>
-</div>
-
-<!-- put at top? -->
-<div class="col-md-4">
-  <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
 </div>
