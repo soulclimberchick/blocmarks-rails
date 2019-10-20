@@ -1,9 +1,12 @@
 class Bookmark < ApplicationRecord
+  belongs_to :user
   belongs_to :topic
+
+  before_validation :format_url
+
   validates :url, presence: true
   validates :url, uniqueness: true
   validates :url, length: { minimum: 1 }
-  before_validation :format_url
 
   def format_url
     unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
