@@ -32,6 +32,11 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :topics
+  has_many :topics, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
+  def liked(bookmark)
+    likes.find_by(bookmark_id: bookmark.id)
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_211530) do
+ActiveRecord::Schema.define(version: 2019_10_20_212050) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.string "url"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2019_10_20_211530) do
     t.integer "user_id"
     t.index ["topic_id"], name: "index_bookmarks_on_topic_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "bookmark_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bookmark_id"], name: "index_likes_on_bookmark_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
