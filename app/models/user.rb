@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -30,5 +32,12 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :topics
+  has_many :topics, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_bookmarks, through: :likes, source: :bookmark
+
+  def liked(bookmark)
+    likes.find_by(bookmark_id: bookmark.id)
+  end
 end
