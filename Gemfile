@@ -27,6 +27,8 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'figaro'
 gem 'devise'
+gem 'mailgun-ruby', '~>1.1.6'
+gem 'pundit'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
