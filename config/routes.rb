@@ -1,22 +1,17 @@
 Rails.application.routes.draw do
+  get 'likes/index'
+  get 'welcome/index'
+  get 'welcome/about'
+  root to: 'welcome#index'
 
-  get 'bookmarks/show'
-  get 'bookmarks/new'
-  get 'bookmarks/edit'
   resources :topics do
-  resources :bookmarks
-end
-
-  get 'topics/index'
-  get 'topics/show'
-  get 'topics/new'
-  get 'topics/edit'
+    resources :bookmarks, except: [:index]
+    resources :bookmarks, except: [:index] do
+      resources :likes, only: [:index, :create, :destroy]
+    end
+  end
 
   devise_for :users
   resources :users, only: [:show]
-
-  get 'welcome/index'
-  get 'welcome/about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'welcome#index'
 end

@@ -30,12 +30,15 @@ end
 topics = Topic.all
 
 # Create bookmarks
-20.times do
+50.times do
   Bookmark.create!(
     topic: topics.sample,
-    url: Faker::Internet.url
+    url: Faker::Internet.url,
+    title: Faker::Book.title,
+    description: Faker::TvShows::TheITCrowd.quote
   )
 end
+
 bookmarks = Bookmark.all
 
 
