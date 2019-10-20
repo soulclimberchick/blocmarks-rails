@@ -1,0 +1,18 @@
+<div class="col-md-3">
+  <div class="card mb-3 shadow-sm">
+    <div style="text-align: center">
+      <small><%= link_to bookmark.topic.title.downcase, topic_path(bookmark.topic.id) %></small>
+    </div>
+    <%= link_to image_tag("//image.thum.io/get/#{bookmark.url}", class: "card-img-top", alt: "Thumbnail [100%x225]", style: "height: 225px; width: 100%; display: block;" ), bookmark.url, target: "_blank" %>
+    <div class="card-body">
+      <p class="text-left">
+        <small><%= bookmark.url.remove("http://", "https://", "www.") %></small>
+      </p>
+      <div class="btn-group">
+        <%= link_to topic_bookmark_like_path(bookmark.topic, bookmark, like), method: :delete, class: 'btn btn-sm btn-outline-secondary', method: :delete do %>
+          <i class="glyphicon glyphicon-star-empty"> </i>unlike
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

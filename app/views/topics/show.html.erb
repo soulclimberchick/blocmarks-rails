@@ -24,7 +24,7 @@
                   <% if user_signed_in? %>
                   <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
                     <% if policy(bookmark).destroy? %>
-                    <a class="nav-link pull-right" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">...</a>
+                    <a class="nav-link pull-right" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">…</a>
                     <div class="dropdown-menu">
                       <%= link_to "Edit", edit_topic_bookmark_path(@topic, bookmark), class: 'dropdown-item' %>
                       <%= link_to "Remove", topic_bookmark_path(@topic, bookmark), method: :delete, class: 'dropdown-item', data: { confirm: 'Are you sure you want to delete this bookmark?' } %>

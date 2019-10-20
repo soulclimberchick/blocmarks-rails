@@ -1,0 +1,34 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1>My Blocmarks</h1>
+</div>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+<%= render_user_bookmarks(@user) %>
+    </div>
+  </div>
+</div>
+
+
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1>Liked Blocmarks</h1>
+</div>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% if current_user %>
+        <% if @user.likes.count > 0 %>
+          <% @user.likes.each do |like| %>
+            <%= render "bookmarks/liked", bookmark: like.bookmark, like: like %>
+          <% end %>
+        <% else %>
+          <div class="col-md-12">
+            <%= @user.email %> has not liked any bookmarks yet.
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
